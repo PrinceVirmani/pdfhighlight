@@ -1,41 +1,121 @@
-<<<<<<< HEAD
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF Highlight Viewer
 
-## Getting Started
+A Next.js application for viewing PDFs and creating, managing, and saving highlights.
 
-First, run the development server:
+## Features
+
+- PDF file upload and viewing
+- Text highlighting with custom positions
+- Save highlights with the "Save Highlights" button
+- View and manage saved highlights
+- Highlights are saved to localStorage
+
+## Prerequisites
+
+- Node.js 18.x or later
+- npm or yarn
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/PrinceVirmani/pdfhighlight.git
+cd pdfhighlight
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+## Development
+
+Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+# or
+yarn build
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+### Deploying to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Make sure all dependencies are correctly listed in package.json
+2. Push your code to GitHub
+3. Connect your GitHub repository to Vercel
+4. Configure the build settings:
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+   - Install Command: `npm install`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+- `src/Components/`: React components
+  - `LeftSide.tsx`: Handles PDF file uploads
+  - `MidSection.tsx`: Displays the PDF and integrates highlighting functionality
+  - `RightSide.tsx`: Manages and displays highlights
+- `src/context/`: Application state management
+  - `AppContext.tsx`: Manages application state using React Context
+- `src/plugins/`: Custom plugins
+  - `highlightPlugin.tsx`: Custom plugin for PDF highlighting functionality
+- `src/app/`: Next.js app router files
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# pdfhighlight
->>>>>>> 9a5ff57 (first commit)
-# pdfhighlight
+- Next.js: React framework
+- React: UI library
+- @react-pdf-viewer/core: Core PDF viewer functionality
+- @react-pdf-viewer/highlight: PDF highlighting functionality
+- pdfjs-dist: PDF.js library for rendering PDFs
+
+## Troubleshooting
+
+### Build Errors
+
+If you encounter build errors related to missing dependencies:
+
+1. Ensure all required dependencies are installed:
+
+```bash
+npm install @react-pdf-viewer/core @react-pdf-viewer/highlight pdfjs-dist
+```
+
+2. Check import paths in your components:
+
+```typescript
+// Correct import paths use the @/ prefix
+import { useAppContext } from "@/context/AppContext";
+import { highlightPlugin, Trigger } from "@/plugins/highlightPlugin";
+```
+
+3. Verify that your tsconfig.json has the correct path aliases:
+
+```json
+"paths": {
+  "@/*": ["./src/*"]
+}
+```
+
+## Future Improvements
+
+See the [PDF_Viewer_Improvement_Plan.md](./PDF_Viewer_Improvement_Plan.md) file for a comprehensive plan of future enhancements.
+
+## License
+
+MIT
